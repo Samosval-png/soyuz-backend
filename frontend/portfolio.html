@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Портфолио — СОЮЗ-Ф12</title>
+    <link rel="icon" type="image/png" href="Sssr_26413.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans&family=Caveat&display=swap" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'Nikkyou Sans';
+            src: url('NikkyouSans.ttf') format('truetype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #A91919;
+            font-family: 'Alumni Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* КАСТОМНЫЙ СКРОЛЛБАР */
+        ::-webkit-scrollbar {
+            background-color: #A91919;
+        }
+        ::-webkit-scrollbar-track {
+            background: #A91919;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FEECBC;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D53E2C;
+        }
+        * {
+            scrollbar-color: #FEECBC #A91919;
+        }
+
+        /* ФИКСИРОВАННАЯ ШАПКА */
+        .fixed-header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            pointer-events: none;
+            height: 311px;
+        }
+        .fixed-header .header-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .fixed-header .header-image svg {
+            display: block;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+        .fixed-header .header-image svg text {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* КНОПКА «ВЕРНУТЬСЯ НАЗАД» */
+        .fixed-header .btn-back {
+            position: absolute;
+            top: 5px;
+            right: 28px;
+            width: 300px;
+            height: 84px;
+            background: #B7CEEF;
+            border-radius: 13px;
+            border: none;
+            cursor: pointer;
+            z-index: 15;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 18px;
+            font-family: 'Alumni Sans', sans-serif;
+            font-weight: 900;
+            font-size: 2.7rem;
+            color: #D53E2C;
+            transform: rotate(-0.31deg);
+            transition: transform 0.1s ease;
+            white-space: nowrap;
+        }
+        .fixed-header .btn-back:active {
+            transform: rotate(-0.31deg) scale(0.97);
+        }
+
+        .fixed-header .btn-back > span:first-child {
+            margin-right: 100px;
+        }
+
+        /* Стрелка в кнопке */
+        .btn-back-arrow {
+            display: inline-block;
+            font-family: 'Nikkyou Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: #A91919;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            transform: scaleX(1) scaleY(2.5);
+            margin-left: -78px;
+        }
+
+        /* ПОДВАЛ */
+        .footer-section {
+            position: relative;
+            width: 100%;
+            background: transparent;
+            padding-top: 60px;
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            margin-top: -220px;
+            z-index: 10;
+        }
+
+        .footer-towers-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* НИЖНЯЯ ПОЛОСА ВСЕ ПРОЕКТЫ */
+        .footer-line {
+            display: block;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: 335px;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .tower {
+            position: relative;
+            width: 380px;
+        }
+
+        .tower-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #FFECB5;
+        }
+
+        .tower-fill {
+            position: absolute;
+            top: 3.5px;
+            left: 3.5px;
+            right: 3.5px;
+            bottom: 0;
+            background-color: #5A7191;
+        }
+
+        .t-left .tower-border {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+        .t-left .tower-fill {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+        .t-mid .tower-border {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+        .t-mid .tower-fill {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+        .t-right .tower-border {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+        .t-right .tower-fill {
+            clip-path: polygon(0 105px, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .t-left { height: 436px; }
+        .t-mid { height: 558px; }
+        .t-right { height: 680px; }
+
+        .tower-content {
+            position: relative;
+            z-index: 10;
+            padding: 80px 40px 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .t-left .tower-content {
+            padding-top: 100px;
+            align-items: flex-start;
+            padding-left: 50px;
+        }
+        .t-mid .tower-content {
+            padding-top: 110px;
+            align-items: center;
+        }
+        .t-right .tower-content {
+            padding: 0;
+            align-items: center;
+        }
+
+        .tower-heading {
+            font-family: 'Nikkyou Sans', 'Impact', sans-serif;
+            font-size: 2.8rem;
+            color: #FFECB5;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 3px;
+            margin-bottom: 30px;
+            margin-left: 100px;
+            margin-top: -20px;
+        }
+
+        .f-header-contacts {
+            font-family: 'Nikkyou Sans', 'Impact', sans-serif;
+            font-size: 2.8rem;
+            color: #FFECB5;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 3px;
+            margin-bottom: 30px;
+            margin-left: 70px;
+            margin-top: -10px;
+        }
+
+        .t-left .f-header-contacts {
+            text-align: left;
+        }
+        .t-mid .tower-heading {
+            text-align: center;
+        }
+
+        .t-text-label {
+            font-family: 'Alumni Sans', sans-serif;
+            font-size: 1.8rem;
+            color: #FFF6DD;
+            margin-bottom: 2px;
+            font-weight: 400;
+        }
+
+        .t-text-value {
+            font-family: 'Alumni Sans', sans-serif;
+            font-size: 2rem;
+            color: #FFF6DD;
+            margin-bottom: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .services-list {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .services-list p {
+            font-family: 'Alumni Sans', sans-serif;
+            font-size: 2rem;
+            color: #FFF6DD;
+            line-height: 1.33;
+        }
+
+        .f-overflow {
+            overflow: hidden;
+        }
+
+        .f-bookmark-wrapper {
+            pointer-events: none;
+            position: absolute;
+            top: 36px;
+            right: 155px;
+            width: 175px;
+            height: 255px;
+            z-index: 20;
+        }
+
+        .f-bookmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: auto;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        /* СОЛНЫШКО В ПОДВАЛЕ НА SVG */
+        .f-sun-svg {
+            position: absolute;
+            top: -262px;
+            left: 238px;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            z-index: 2;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .f-logo-text {
+            position: absolute;
+            top: 90px;
+            left: 72%;
+            transform: translateX(-50%);
+            font-family: 'Nikkyou Sans', sans-serif;
+            font-size: 3.8rem;
+            color: #FFECB5;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 4;
+            white-space: nowrap;
+        }
+
+        /* ИКОНКИ СОЦСЕТЕЙ */
+        .f-socials-tg {
+            display: flex;
+            gap: 15px;
+            margin-top: 400px;
+            position: relative;
+            z-index: 15;
+            margin-left: -210px;
+        }
+        .f-socials-tg a { display: block; line-height: 0; }
+        .f-socials-tg img {
+            width: 65px;
+            height: 65px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .f-socials-tg img:hover { transform: scale(1.1); }
+
+        .f-socials-vk {
+            display: flex;
+            gap: 15px;
+            margin-top: -65px;
+            position: relative;
+            z-index: 15;
+            margin-left: 0;
+        }
+        .f-socials-vk a { display: block; line-height: 0; }
+        .f-socials-vk img {
+            width: 65px;
+            height: 65px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .f-socials-vk img:hover { transform: scale(1.1); }
+
+        .f-socials-m {
+            display: flex;
+            gap: 15px;
+            margin-top: -65px;
+            position: relative;
+            z-index: 15;
+            margin-left: 210px;
+        }
+        .f-socials-m a { display: block; line-height: 0; }
+        .f-socials-m img {
+            width: 65px;
+            height: 65px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .f-socials-m img:hover { transform: scale(1.1); }
+
+        .f-legal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 15;
+        }
+        .f-legal a {
+            font-family: 'Alumni Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #FFF6DD;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .f-legal a:hover { color: #FFECB5; }
+
+        .f-copy {
+            font-family: 'Alumni Sans', sans-serif;
+            font-size: 1.5rem;
+            color: #FFF6DD;
+            text-align: center;
+            margin-top: 40px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 15;
+        }
+
+        /* ПОРТФОЛИО */
+        .portfolio-wrapper {
+            position: relative;
+            background: #F9E2AA;
+            padding: 160px 0 100px;
+            overflow: visible;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            z-index: 1;
+        }
+
+        /* Кремовый фон под подвалом */
+        .portfolio-wrapper::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -250px;
+            width: 100%;
+            height: 250px;
+            background: #F9E2AA;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Декоративные круги */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .deco-circle.red { background: #D53E2C; }
+        .deco-circle.blue { background: #5A7191; }
+        .deco-circle.cream {
+            background: #F9E2AA;
+            border: 2px solid #D53E2C;
+        }
+
+        .dc-1 { width: 120px; height: 120px; top: 100px; right: 80px; background: #D53E2C; }
+        .dc-2 { width: 80px; height: 80px; top: 40px; left: 60px; background: #5A7191; }
+        .dc-3 { width: 60px; height: 60px; bottom: 40px; right: 120px; background: #D53E2C; }
+        .dc-4 { width: 100px; height: 100px; bottom: 80px; left: 40px; background: #5A7191; }
+        .dc-5 { width: 50px; height: 50px; top: 240px; right: 30px; background: #F9E2AA; border: 2px solid #D53E2C; }
+        .dc-6 { width: 70px; height: 70px; bottom: 200px; left: 100px; background: #D53E2C; }
+        .dc-7 { width: 90px; height: 90px; top: 550px; right: 60px; background: #5A7191; }
+        .dc-8 { width: 55px; height: 55px; bottom: 400px; right: 200px; background: #F9E2AA; border: 2px solid #D53E2C; }
+
+        .portfolio-container {
+            position: relative;
+            z-index: 5;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Заголовок ПОРТФОЛИО */
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .portfolio-header .main-title {
+            font-family: 'Nikkyou Sans', 'Impact', sans-serif;
+            font-size: 4rem;
+            color: #E64F3D;
+            text-shadow:
+                1.5px -0.5px 0 #7E9DCA,
+                3px -2px 0 #7E9DCA,
+                4.5px -3.5px 0 #7E9DCA,
+                6px -5px 0 #7E9DCA;
+            position: relative;
+            display: inline-block;
+            line-height: 1.25;
+            margin-top: -20px;
+        }
+
+        /* Полоска под заголовком */
+        .portfolio-underline {
+            display: block;
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            margin-bottom: 15px auto 0;
+            pointer-events: none;
+            margin-left: 310px;
+        }
+
+        /* ПРОЕКТЫ */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        /* Каждый проект */
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            position: relative;
+            padding: 10px 0;
+        }
+        .project-item:nth-child(1) { animation-delay: 0.15s; }
+        .project-item:nth-child(2) { animation-delay: 0.3s; }
+        .project-item:nth-child(3) { animation-delay: 0.45s; }
+
+	/* Заголовок проекта 1 */
+	.project-item:nth-child(1) .project-title {
+	    margin-left: 260px;
+	}
+
+	/* Заголовок проекта 2 */
+	.project-item:nth-child(2) .project-title {
+	    margin-left: 0px;
+	}
+
+	/* Заголовок проекта 3 */
+	.project-item:nth-child(3) .project-title {
+	    margin-left: 300px;
+	}
+
+        @keyframes cardFadeUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Заголовок проекта */
+        .project-title {
+            font-family: 'Nikkyou Sans', 'Impact', sans-serif;
+            font-size: 2.2rem;
+            color: #A91919;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Строка с текстом и плейсхолдером */
+        .project-body {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            position: relative;
+        }
+
+        .project-body.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .project-text {
+            flex: 1;
+            min-width: 0;
+            padding: 5px 5px 5px 0;
+        }
+
+        .project-text p {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            color: #760909;
+            font-weight: 500;
+            text-align: justify;
+        }
+
+        /* Плейсхолдер */
+        .image-slider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 700px;
+        }
+
+        .project-image {
+            flex: 1 1 auto;
+            width: 100%;
+            aspect-ratio: 5 / 3.5;
+            height: auto;
+            border-radius: 24px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e8d5b0;
+            border: 3px solid #D53E2C;
+            box-shadow: 0 8px 20px rgba(169, 25, 25, 0.15);
+            transition: transform 0.3s;
+        }
+        .project-image:hover { transform: scale(1.02); }
+
+        .project-image .img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #A91919;
+            font-family: 'Nikkyou Sans', sans-serif;
+            background: rgba(245, 230, 200, 0.85);
+            border-radius: 22px;
+            text-align: center;
+            padding: 20px;
+        }
+
+	.project-img-real {
+	    width: 100%;
+	    height: 100%;
+	    display: block;
+	    object-fit: cover;
+	    border-radius: 22px;
+	}
+
+        .nav-arrow {
+            font-size: 3.6rem;
+            color: #A91919;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.15s;
+            font-weight: bold;
+            flex-shrink: 0;
+            opacity: 0.6;
+            padding: 0 4px;
+        }
+        .nav-arrow:hover {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 900px) {
+            .project-body,
+            .project-body.reverse {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .image-slider {
+                flex: 0 0 auto;
+                width: 100%;
+                justify-content: center;
+            }
+            .project-image {
+                flex: 1;
+                width: 100%;
+            }
+            .nav-arrow { font-size: 2.8rem; }
+            .portfolio-header .main-title { font-size: 3.6rem; }
+            .project-title { font-size: 1.8rem; }
+            .dc-1, .dc-2, .dc-3, .dc-4, .dc-5, .dc-6, .dc-7, .dc-8 { display: none; }
+
+            .footer-towers-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tower {
+                width: 100%;
+                max-width: 380px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .fixed-header .btn-back {
+                top: 10px;
+                right: 8px;
+                width: 200px;
+                height: 55px;
+                padding: 0 16px;
+                font-size: 1.1rem;
+                border-radius: 10px;
+            }
+            .btn-back-arrow {
+                font-size: 1.6rem;
+            }
+            .portfolio-wrapper {
+                padding: 130px 0 20px;
+            }
+            .nav-arrow { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ФИКСИРОВАННАЯ ШАПКА -->
+    <div class="fixed-header">
+        <div class="header-image">
+            <svg viewBox="0 0 1920 311" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="sunGrad" cx="295" cy="-83" r="45" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#DB9004" stop-opacity="1" />
+                        <stop offset="0%" stop-color="#D27509" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#B61A1A" stop-opacity="1" />
+                    </radialGradient>
+                </defs>
+                <rect x="0" y="-82" width="1920" height="145" fill="#B61A1A" />
+                <path d="M0,0 L370,0 L370,370 L370,381 L180,265 L0,381 L0,260 Z" fill="#B61A1A" />
+                <circle cx="295" cy="-83" r="40" fill="url(#sunGrad)" />
+                <g id="raysGroup" transform="translate(295, -80) rotate(-0.9)"></g>
+                <text x="130" y="126" text-anchor="middle" font-family="'Nikkyou Sans', 'Impact', sans-serif" font-size="94" fill="#FFECB5" letter-spacing="2" onclick="window.location.href='index.html'" style="cursor:pointer;">
+                    <tspan x="210" dy="0">СОЮЗ-</tspan>
+                    <tspan x="180" dy="120">Ф12</tspan>
+                </text>
+            </svg>
+        </div>
+        <button class="btn-back" onclick="location.href='index.html'">
+            <span>вернуться назад</span>
+            <span class="btn-back-arrow">&gt;</span>
+        </button>
+    </div>
+
+    <!-- ПОРТФОЛИО -->
+    <div class="portfolio-wrapper">
+
+        <!-- Декоративные круги -->
+        <div class="deco-circle red dc-1"></div>
+        <div class="deco-circle blue dc-2"></div>
+        <div class="deco-circle red dc-3"></div>
+        <div class="deco-circle blue dc-4"></div>
+        <div class="deco-circle cream dc-5"></div>
+        <div class="deco-circle red dc-6"></div>
+        <div class="deco-circle blue dc-7"></div>
+        <div class="deco-circle cream dc-8"></div>
+
+        <div class="portfolio-container">
+
+            <!-- Заголовок -->
+            <div class="portfolio-header">
+                <div class="main-title">
+                    ПОРТФОЛИО
+                </div>
+                <img src="линия все проекты.png" class="portfolio-underline" alt="" />
+            </div>
+
+            <!-- Проекты -->
+            <div class="projects-list">
+
+                <!-- Проект 1 -->
+                <div class="project-item">
+                    <h3 class="project-title">ФАНАТСКИЙ ПОРТАЛ — ЭНЦИКЛОПЕДИЯ “КРИК”</h3>
+                    <div class="project-body">
+                        <div class="project-text">
+                            <p>Информационная система, объединяющая структурированную информацию о вселенной «Крик» с возможностью интерактивного взаимодействия для пользователей и удобной навигацией и атмосферным дизайном. Всё самое интересное и важное собрано в одном месте!</p>
+                        </div>
+                        <div class="image-slider">
+                            <div class="nav-arrow nav-arrow-left" data-target="0">&#10094;</div>
+                            <div class="project-image" id="proj1" >
+                                <img src="крик_портфолио.png" alt="Крик" class="project-img-real">
+                            </div>
+                            <div class="nav-arrow nav-arrow-right" data-target="0">&#10095;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Проект 2 -->
+                <div class="project-item">
+                    <h3 class="project-title">САЙТ ДЛЯ ИЗУЧЕНИЯ ЯЗЫКОВ “LINGOBLOOM”</h3>
+                    <div class="project-body reverse">
+                        <div class="project-text">
+                            <p>Сайт, разработанный специально для изучения целых 5 разных языков по выбору, с интерактивными заданиями, квизами, системой достижений и виртуальной валютой, за которую можно приобретать украшения для своего профиля и не только!</p>
+                        </div>
+                        <div class="image-slider">
+                            <div class="nav-arrow nav-arrow-left" data-target="1">&#10094;</div>
+                            <div class="project-image" id="proj2">
+                                <img src="языки_портфолио.png" alt="Языки" class="project-img-real">
+                            </div>
+                            <div class="nav-arrow nav-arrow-right" data-target="1">&#10095;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Проект 3 -->
+                <div class="project-item">
+                    <h3 class="project-title">ИНФОРМАЦИОННАЯ СИСТЕМА “ДУХ ПРЕДКОВ”</h3>
+                    <div class="project-body">
+                        <div class="project-text">
+                            <p>Информационная система в виде стилизованного веб-сайта, разработанная специально для изучения данных о множестве индейских племён с прототипом работоспособного онлайн-магазина, где можно оформлять различные книги и курсы, и это только часть функционала.</p>
+                        </div>
+                        <div class="image-slider">
+                            <div class="nav-arrow nav-arrow-left" data-target="2">&#10094;</div>
+                            <div class="project-image" id="proj3"">
+                                <img src="дух_предков.png" alt="Дух предков" class="project-img-real">
+                            </div>
+                            <div class="nav-arrow nav-arrow-right" data-target="2">&#10095;</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <div class="footer-section">
+        <div class="footer-towers-container">
+            <div class="tower t-left">
+                <div class="tower-border"></div><div class="tower-fill"></div>
+                <div class="tower-content">
+                    <h3 class="f-header-contacts"><u>КОНТАКТЫ</u></h3>
+                    <p class="t-text-label">Звоните:</p><p class="t-text-value">+7 (XXX) - XXX - XX - XX</p>
+                    <p class="t-text-label">Пишите:</p><p class="t-text-value">soyuz-F12@mail.ru</p>
+                    <p class="t-text-label" style="text-transform: uppercase;">РЕЖИМ РАБОТЫ:</p><p class="t-text-value">Пн – Пт с 9:30 до 19:00</p>
+                </div>
+            </div>
+            <div class="tower t-mid">
+                <div class="tower-border"></div><div class="tower-fill"></div>
+                <div class="tower-content">
+                    <h3 class="tower-heading"><u>УСЛУГИ</u></h3>
+                    <div class="services-list"><p>Сайты и веб-сервисы</p><p>Мобильные приложения</p><p>Интернет-магазины</p><p>UX/UI и веб-дизайн</p><p>Интеграция сервисов</p><p>Автоматизация бизнеса</p><p>Поддержка проектов</p></div>
+                </div>
+            </div>
+            <div class="tower t-right">
+                <div class="tower-border"></div><div class="tower-fill f-overflow"></div>
+                <div class="tower-content">
+                    <div class="f-bookmark-wrapper">
+                        <img src="закладка подвал.png" class="f-bookmark" alt="">
+                        <svg class="f-sun-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="footerSunGrad" cx="300" cy="300" r="20" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#DB9004" stop-opacity="1" />
+                                    <stop offset="0%" stop-color="#D27509" stop-opacity="1" />
+                                    <stop offset="100%" stop-color="#B61A1A" stop-opacity="1" />
+                                </radialGradient>
+                            </defs>
+                            <g id="footerRaysGroup" transform="translate(300, 300)"></g>
+                            <circle cx="300" cy="300" r="20" fill="url(#footerSunGrad)" />
+                        </svg>
+                        <div class="f-logo-text">СОЮЗ-<br>Ф12</div>
+                    </div>
+
+                    <div class="f-socials-tg">
+                        <a href="https://t.me/dinozavrgosha" target="_blank" rel="noopener noreferrer"><img src="тг.png" alt="Telegram"></a>
+                    </div>
+                    <div class="f-socials-vk">
+                        <a href="https://vk.com/pkovchinnikova" target="_blank" rel="noopener noreferrer"><img src="vk.png" alt="VK"></a>
+                    </div>
+                    <div class="f-socials-m">
+                        <a href="https://spo-13.mskobr.ru/" target="_blank" rel="noopener noreferrer"><img src="m.png" alt="M"></a>
+                    </div>
+
+                    <div class="f-legal"><a href="#">Правила использования материалов сайта</a><a href="#">Соглашение о персональных данных</a></div>
+                    <p class="f-copy">© 2026 учебно-производственная IT студия<br>"Союз-Ф12". Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+
+        <img src="нижняя линия все проекты.png" class="footer-line" alt="">
+    </div>
+
+    <script>
+        // Стрелки навигации для переключения "фото" (плейсхолдеров)
+        const placeholders = [
+            ['#e8d5b0', '#d4c4a0', '#c2b290', '#b09e80'],
+            ['#e8d5b0', '#d4c4a0', '#c2b290', '#b09e80'],
+            ['#e8d5b0', '#d4c4a0', '#c2b290', '#b09e80']
+        ];
+        let currentIdx = [0, 0, 0];
+
+        document.querySelectorAll('.image-slider').forEach((slider, projectIdx) => {
+            const leftArrow = slider.querySelector('.nav-arrow-left');
+            const rightArrow = slider.querySelector('.nav-arrow-right');
+            const imageDiv = slider.querySelector('.project-image');
+
+            function updateImage(index) {
+                const colors = placeholders[projectIdx];
+                const idx = ((index % colors.length) + colors.length) % colors.length;
+                currentIdx[projectIdx] = idx;
+                imageDiv.style.backgroundColor = colors[idx];
+                imageDiv.style.backgroundImage = 'none';
+                const placeholder = imageDiv.querySelector('.img-placeholder');
+                if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
+            }
+
+            leftArrow.addEventListener('click', () => {
+                updateImage(currentIdx[projectIdx] - 1);
+            });
+            rightArrow.addEventListener('click', () => {
+                updateImage(currentIdx[projectIdx] + 1);
+            });
+        });
+
+        // НАСТРОЙКА ЛУЧЕЙ ПО ОТДЕЛЬНОСТИ (ШАПКА)
+        (function() {
+            const raysData = [];
+            const count = 32;
+            const defaultRadius = 420;
+            const defaultInnerRadius = 35;
+            const defaultBaseWidth = 8;
+            const defaultTipWidth = 0.2;
+            const defaultColor = '#540000';
+
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * 2 * Math.PI;
+                raysData.push({
+                    angle: angle,
+                    radius: defaultRadius,
+                    innerRadius: defaultInnerRadius,
+                    baseWidth: defaultBaseWidth,
+                    tipWidth: defaultTipWidth,
+                    color: defaultColor
+                });
+            }
+
+            raysData[10].radius = 390;
+            raysData[10].tipWidth = 0.5;
+            raysData[9].radius = 380;
+            raysData[9].tipWidth = 1;
+            raysData[8].radius = 420;
+            raysData[7].radius = 350;
+            raysData[7].tipWidth = 1;
+            raysData[6].radius = 185;
+            raysData[6].tipWidth = 4;
+            raysData[5].radius = 171;
+            raysData[5].tipWidth = 4;
+            raysData[4].radius = 202;
+            raysData[4].tipWidth = 3;
+            raysData[3].radius = 260;
+            raysData[3].tipWidth = 2;
+            raysData[2].radius = 380;
+
+            const group = document.getElementById('raysGroup');
+            if (!group) return;
+
+            group.innerHTML = '';
+
+            raysData.forEach((ray) => {
+                const angle = ray.angle;
+                const radius = ray.radius;
+                const innerRadius = ray.innerRadius || 35;
+                const baseWidth = ray.baseWidth;
+                const tipWidth = ray.tipWidth;
+                const color = ray.color;
+
+                const perpAngle = angle + Math.PI / 2;
+
+                const x1 = Math.cos(angle) * innerRadius - Math.cos(perpAngle) * (baseWidth / 2);
+                const y1 = Math.sin(angle) * innerRadius - Math.sin(perpAngle) * (baseWidth / 2);
+                const x2 = Math.cos(angle) * innerRadius + Math.cos(perpAngle) * (baseWidth / 2);
+                const y2 = Math.sin(angle) * innerRadius + Math.sin(perpAngle) * (baseWidth / 2);
+                const x3 = Math.cos(angle) * radius + Math.cos(perpAngle) * (tipWidth / 2);
+                const y3 = Math.sin(angle) * radius + Math.sin(perpAngle) * (tipWidth / 2);
+                const x4 = Math.cos(angle) * radius - Math.cos(perpAngle) * (tipWidth / 2);
+                const y4 = Math.sin(angle) * radius - Math.sin(perpAngle) * (tipWidth / 2);
+
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                polygon.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`);
+                polygon.setAttribute('fill', color);
+                group.appendChild(polygon);
+            });
+        })();
+
+        // НАСТРОЙКА ЛУЧЕЙ ПО ОТДЕЛЬНОСТИ (ПОДВАЛ)
+        (function() {
+            const raysData = [];
+            const count = 32;
+            const defaultRadius = 280;
+            const defaultInnerRadius = 5;
+            const defaultBaseWidth = 6;
+            const defaultTipWidth = 0.2;
+            const defaultColor = '#540000';
+
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * 2 * Math.PI;
+                raysData.push({
+                    angle: angle,
+                    radius: defaultRadius,
+                    innerRadius: defaultInnerRadius,
+                    baseWidth: defaultBaseWidth,
+                    tipWidth: defaultTipWidth,
+                    color: defaultColor
+                });
+            }
+
+            raysData[10].radius = 275;
+            raysData[11].radius = 265;
+            raysData[12].radius = 260;
+            raysData[13].radius = 250;
+            raysData[14].radius = 250;
+            raysData[15].radius = 250;
+            raysData[16].radius = 153;
+            raysData[16].tipWidth = 2.5;
+            raysData[17].radius = 89;
+            raysData[17].tipWidth = 3.5;
+            raysData[18].radius = 66;
+            raysData[18].tipWidth = 4;
+            raysData[19].radius = 54;
+            raysData[19].tipWidth = 4;
+            raysData[20].radius = 48;
+            raysData[20].tipWidth = 4;
+            raysData[21].radius = 45;
+            raysData[21].tipWidth = 4;
+            raysData[22].radius = 43.5;
+            raysData[22].tipWidth = 4;
+            raysData[23].radius = 43;
+            raysData[23].tipWidth = 4;
+            raysData[24].radius = 44;
+            raysData[24].tipWidth = 4;
+            raysData[25].radius = 48;
+            raysData[25].tipWidth = 4;
+            raysData[26].radius = 53;
+            raysData[26].tipWidth = 4;
+            raysData[27].radius = 65;
+            raysData[27].tipWidth = 4;
+            raysData[28].radius = 85;
+            raysData[28].tipWidth = 4;
+
+            const group = document.getElementById('footerRaysGroup');
+            if (!group) return;
+
+            group.innerHTML = '';
+
+            raysData.forEach((ray) => {
+                const angle = ray.angle;
+                const radius = ray.radius;
+                const innerRadius = ray.innerRadius || 50;
+                const baseWidth = ray.baseWidth;
+                const tipWidth = ray.tipWidth;
+                const color = ray.color;
+
+                const perpAngle = angle + Math.PI / 2;
+
+                const x1 = Math.cos(angle) * innerRadius - Math.cos(perpAngle) * (baseWidth / 2);
+                const y1 = Math.sin(angle) * innerRadius - Math.sin(perpAngle) * (baseWidth / 2);
+                const x2 = Math.cos(angle) * innerRadius + Math.cos(perpAngle) * (baseWidth / 2);
+                const y2 = Math.sin(angle) * innerRadius + Math.sin(perpAngle) * (baseWidth / 2);
+                const x3 = Math.cos(angle) * radius + Math.cos(perpAngle) * (tipWidth / 2);
+                const y3 = Math.sin(angle) * radius + Math.sin(perpAngle) * (tipWidth / 2);
+                const x4 = Math.cos(angle) * radius - Math.cos(perpAngle) * (tipWidth / 2);
+                const y4 = Math.sin(angle) * radius - Math.sin(perpAngle) * (tipWidth / 2);
+
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                polygon.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`);
+                polygon.setAttribute('fill', color);
+                group.appendChild(polygon);
+            });
+        })();
+    </script>
+
+</body>
+</html>
